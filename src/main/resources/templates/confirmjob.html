@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a class="nav-link" href="/generateresume">Skip to resume</a>
+<h1>Confirm your job:</h1>
+<hr>
+
+<!--enter things here-->
+
+<p th:inline="text">So [[${newPerson.name}]]On the base of your information here is what we get:</p>
+
+<p th:inline="text">Employer: [[${aJob.employer}]].</p>
+<p th:inline="text">Position: [[${aJob.position}]].</p>
+<p th:inline="text">Start Date: [[${aJob.startDate}]].</p>
+<p th:inline="text">End Date: [[${aJob.endDate}]].</p>
+<p th:inline="text">Duty 1: [[${aJob.duty1}]].</p>
+<p th:inline="text">Duty 2: [[${aJob.duty2}]].</p>
+
+
+</div>
+</div>
+</header>
+<a class="btn btn-primary btn-xl" href="/addjob">Add work experience!</a>
+<a class="btn btn-primary btn-xl" href="/addskill">Add some skills!</a>
+
+</body>
+</html>

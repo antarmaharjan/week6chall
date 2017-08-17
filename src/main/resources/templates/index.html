@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a class="nav-link" href="/generateresume">Skip to resume</a>
+<h1 id="homeHeading">Welcome to the resume builder App</h1>
+<hr>
+<p>Please fill out the form below to start:</p>
+
+<!--enter things here-->
+<form action="#"
+      th:action="@{/}"
+      th:object="${newPerson}"
+      method="post">
+    <ul>
+        Name: <Input type="text" th:field="*{name}"/>
+        <span th:if="${#fields.hasErrors('name')}"
+              th:errors="*{name}"></span><br />
+        Email: <Input type="text" th:field="*{email}"/>
+        <span th:if="${#fields.hasErrors('email')}"
+              th:errors="*{email}"></span><br />
+    </ul>
+    <p><input type="submit" value="Start Robo Resume App"/></p>
+     <!--<p><Input type="reset" value="spelled wrong"/></p>-->
+
+</form>
+
+
+</body>
+</html>

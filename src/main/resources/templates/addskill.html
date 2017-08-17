@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a class="nav-link" href="/generateresume">Skip to resume</a>
+<h1>Please Enter your Skill here</h1>
+<hr>
+
+<!--enter things here-->
+<form action="#"
+      th:action="@{/addskill}"
+      th:object="${aSkill}"
+      method="post">
+    <ul>
+        Skill: <input th:type="text" th:field="*{skill}"/> <br />
+        <span th:if="${#fields.hasErrors('skill')}"
+              th:errors="*{skill}"></span><br />
+        Rating: <input th:type="text" th:field="*{rating}"/><br />
+        <span th:if="${#fields.hasErrors('rating')}"
+              th:errors="*{rating}"></span><br />
+
+    </ul>
+
+    <input type="submit" value="Add Skill"/> <input type="reset" value="Clear Form"/>
+
+</form>
+
+
+</body>
+</html>

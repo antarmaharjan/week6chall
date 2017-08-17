@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Display result</title>
+</head>
+<body>
+<table border="1" cellpadding="5">
+    <tr>
+        <td><b>Person Id</p></b></td>
+        <td><b>Person's Name</p></b></td>
+        <td><b>Person's Email</p></b></td>
+        <td><b>Actions</b></td>
+    </tr>
+    <!--a comment-->
+    <!--iterate through all the items-->
+    <th:block th:each="i:${allinfos}">
+        <tr>
+            <td><p th:text="${person.id}"></p></td>
+            <td><p th:text="${person.name}"></p></td>
+            <td><p th:text="${person.email}"></p></td>
+            <td><p th:text="${person.email}"></p></td>
+
+            <td>
+                <a th:href="@{/update/{id} (id=${person.id})}">Update</a> -
+                <a th:href="@{/delete/{id} (id=${person.name})}">Delete</a>
+            </td>
+        </tr>
+    </th:block>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<a class="nav-link" href="/generateresume">Skip to resume</a>
+<h1>Let's confirm  your educational information</h1>
+<hr>
+
+<!--enter things here-->
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Confirmation:</h3>
+    </div>
+    <div class="panel-body">
+        <p th:inline="text">School: [[${anEducation.school}]].</p>
+        <p th:inline="text">Degree: [[${anEducation.degree}]].</p>
+        <p th:inline="text">Graduated: [[${anEducation.gradyear}]].</p>
+
+    </div>
+</div>
+<a class="btn btn-primary btn-xl" href="/addeducation">Add another educational infos</a>
+<a class="btn btn-primary btn-xl" href="/addjob">Add work experience!</a>
+
+
+</body>
+</html>

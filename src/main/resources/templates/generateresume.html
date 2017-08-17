@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>
+</head>
+<body>
+<h1>Robo Resume App presents</h1>
+<h3 th:inline="text">[[${myPerson.name}]]</h3>
+<h4 th:inline="text">[[${myPerson.email}]]</h4>
+
+<a th:href="@{/update/{id} (id=${myPerson.id})}">Update</a> -
+<a th:href="@{/delete/{id} (id=${myPerson.id})}">Delete</a>
+
+<h2>Education:</h2>
+<div th:each="i:${myEducation}">
+    <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
+    <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
+</div>
+
+<p><a href="/addeducation">Add another educational experience</a></p>
+
+<hr></hr>
+<br />
+<h2>Work Experience:</h2>
+<div th:each="i:${myjob}">
+    <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
+    <p th:inline="text">[[${i.company}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
+    <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
+    <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
+</div>
+
+<p><a href="/addjob">Add another job</a></p>
+
+
+<hr></hr>
+<br />
+<h2>Skills:</h2>
+<div th:each="i:${mySkills}">
+    <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
+</div>
+<p><a href="/addskill">Add more skills</a></p>
+
+
+
+<h2><a href="/">Home</a></h2>
+
+</body>
+</html>
