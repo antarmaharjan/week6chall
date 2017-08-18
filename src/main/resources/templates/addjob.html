@@ -13,7 +13,7 @@
       th:object="${aJob}"
       method="post">
     <ul>
-        Company: <input th:type="text" th:field="*{employer}"/> <br />
+        Employer: <input th:type="text" th:field="*{employer}"/> <br />
         <span th:if="${#fields.hasErrors('employer')}"
               th:errors="*{employer}"></span><br />
         Position: <input th:type="text" th:field="*{position}"/><br />

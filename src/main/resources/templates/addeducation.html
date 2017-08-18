@@ -22,7 +22,7 @@
         <span th:if="${#fields.hasErrors('degree')}"
               th:errors="*{degree}"></span><br />
         Graduation Date(MM/YYYY): <input th:type="text" th:field="*{gradyear}"/><br />
-        <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}">This field is mandatory and has to be in desired format
+        <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}">This field has to be in desired format
               </span><br/>
 
     </ul>

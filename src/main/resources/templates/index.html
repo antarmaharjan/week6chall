@@ -6,9 +6,9 @@
 </head>
 <body>
 <a class="nav-link" href="/generateresume">Skip to resume</a>
-<h1 id="homeHeading">Welcome to the resume builder App</h1>
+<h1 id="homeHeading">Welcome to the Resume Builder App</h1>
 <hr>
-<p>Please fill out the form below to start:</p>
+<h3>Please enter your name and email below.</h3>
 
 <!--enter things here-->
 <form action="#"
@@ -23,7 +23,7 @@
         <span th:if="${#fields.hasErrors('email')}"
               th:errors="*{email}"></span><br />
     </ul>
-    <p><input type="submit" value="Start Robo Resume App"/></p>
+    <p><input type="submit" value="Click here to start"/></p>
      <!--<p><Input type="reset" value="spelled wrong"/></p>-->
 
 </form>

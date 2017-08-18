@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Display result</title>
+    <title>Display all</title>
 </head>
 <body>
 <table border="1" cellpadding="5">
@@ -19,7 +19,6 @@
             <td><p th:text="${person.id}"></p></td>
             <td><p th:text="${person.name}"></p></td>
             <td><p th:text="${person.email}"></p></td>
-            <td><p th:text="${person.email}"></p></td>
 
             <td>
                 <a th:href="@{/update/{id} (id=${person.id})}">Update</a> -
@@ -28,6 +27,16 @@
         </tr>
     </th:block>
 </table>
+<form action="/addeducation">
+    <input type="submit" value="Add Education">
+<form action="/addskill">
+        <input type="submit" value="Add Skill">
+</form>
+<form action="/addjob">
+    <input type="submit" value="Add Job">
+</form>
+<form action="/">
+    <input type="submit" value="Home">
 
 </body>
 </html>

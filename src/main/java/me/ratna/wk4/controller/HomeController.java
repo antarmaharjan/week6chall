@@ -47,13 +47,33 @@ public class HomeController {
         personRepository.save(newPerson);
         return"confirmperson";
     }
-    /**
-     * click to add another education field then show confirmation page
-     * display confirmation entry and allow user to enter a new job
-     * buttons:add another education and next(to work experience)
-     *
-     * 1-10 educational experiences
-     */
+//    @GetMapping("/addeducation")
+//    public String addeducationto(Model model)
+//    {
+//        System.out.println(educationRepository.count());
+//
+//        if(educationRepository.count()>=10)
+//        {
+//            return "limit";
+//        }
+//
+//        model.addAttribute("neweducation", new Education());
+//        return "addeducation";
+//
+//    }
+//
+//    @PostMapping("/addeducation")
+//    public String posteducation(@Valid @ModelAttribute("neweducation") Education education, BindingResult bindingResult)
+//    {
+//        if(bindingResult.hasErrors())
+//        {
+//            return "addeducation";
+//        }
+//
+//        educationRepository.save(education);
+//        return "confirmeducation";
+//    }
+
     @GetMapping("/addeducation")
     public String addEducation(Model toSend){
 
@@ -61,27 +81,16 @@ public class HomeController {
 
         return "addeducation";
     }
-
     @PostMapping("/addeducation")
     public String confirmEducationAndAddMore(@Valid @ModelAttribute("anEducation") Education anEducation,Model toSend, BindingResult result){
         if(result.hasErrors()){
             return "addeducation";
         }
         educationRepository.save(anEducation);
-
         return "confirmeducation";
     }
-    /***have fields that will accept a single job
-     * click to add another work experience (this will show a confirmation of the previous
-     * entry and have fields avalible to enter a new job
-     * buttons: add another and next(to skills)
-     *
-     * 0-10 work experiences
-     */
-
     @GetMapping("/addjob")
     public String addwork(Model toSend,@ModelAttribute("newPerson") Person newPerson){
-
         toSend.addAttribute("aJob", new Job());
         return "addjob";
     }
@@ -93,13 +102,7 @@ public class HomeController {
         jobRepository.save(aJob);
         return "confirmjob";
     }
-    /***have fields that will accept a single skill
-     * click to add another skill (this will show a confirmation of the previous
-     * entry and have fields available to enter a new skill
-     * buttons: add another skill and next(generate resume)
-     *
-     * 0-10 work experiences
-     */
+
     @GetMapping("/addskill")
     public String addskill(Model toSend,@ModelAttribute("newPerson") Person newPerson){
         toSend.addAttribute("aSkill", new Skill());
@@ -114,7 +117,6 @@ public class HomeController {
         skillRepository.save(aSkill);
         return "confirmskill";
     }
-
     @GetMapping("/generateresume")
     public String generateResume(Model toSend, @ModelAttribute("newPerson") Person newPerson){
         //maybe have buttons to add more education, work, or skills

@@ -25,7 +25,7 @@
 <h2>Work Experience:</h2>
 <div th:each="i:${myjob}">
     <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
-    <p th:inline="text">[[${i.company}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
+    <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
     <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
     <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
 </div>
