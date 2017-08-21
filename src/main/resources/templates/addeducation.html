@@ -43,9 +43,8 @@
                   th:errors="*{degree}"></span><br />
             <div>
                 <label>Graduation Year:</label>
-                <input  year required th:type="numbers" name="gradyear"  th:field="*{gradyear}"/><br />
-                <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}">Numerical value required
-              </span><br/>
+                <input required type="number" name="gradyear"  th:field="*{gradyear}"/><br />
+                <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}"></span><br/>
             </div>
         </ul>
 

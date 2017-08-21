@@ -93,11 +93,11 @@ public class HomeController {
         return "confirmskill";
 
     }
-    @GetMapping("/generateresume1")
+    @GetMapping("/generateresume")
     public String generateResume(Model toSend){
         //maybe have buttons to add more education, work, or skills
 
-        Person person = personRepository.findById(1);
+        Person person = personRepository.findById(2);
         System.out.println("name is " + person.getName());
         toSend.addAttribute("myPerson",person);
 
@@ -107,7 +107,7 @@ public class HomeController {
         toSend.addAttribute("myWork", job);
         Iterable<Skill> skill = skillRepository.findAll();
         toSend.addAttribute("mySkills",skill);
-        return "generateresume1";
+        return "generateresume";
     }
     //For delete and edit
     @GetMapping("/addjob/update/{id}")
@@ -134,7 +134,7 @@ public class HomeController {
         model.addAttribute("newPerson",person);
         return "index";
     }
-    @GetMapping("/addeducation/update/{id}")
+    @GetMapping("/confirmeducation/update/{id}")
     public String defaultRequest6 (@PathVariable ("id") long id,Model model){
         Education education =educationRepository.findOne(id);
         model.addAttribute("newEducation",education);

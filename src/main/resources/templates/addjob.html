@@ -24,8 +24,6 @@
 
 <section id="showcase">
     <div class="container"></div>
-
-
     <h3>Add your work experience</h3>
     <hr>
     <!--enter things here-->
@@ -42,7 +40,8 @@
                   th:errors="*{position}"></span><br />
 
             Start Date(MM/YYYY): <input required type="date" th:field="*{startDate}"/><br/>
-            <span th:if="${#fields.hasErrors('startDate')}"th:error="*{startDate}">Date format error</span><br/>
+            <span th:if="${#fields.hasErrors('startDate')}"th:error="*{startDate}">
+                <small class="form-error" data-errors-when="valueMissing">Error.</small>Date format error</span><br/>
             End Date(MM/YYYY)(Write 'Cont' if still working): <input required type="date" th:field="*{endDate}"/> <br />
             <span th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}">Date format error</span><br />
             Duty 1: <input required th:type="text" th:field="*{duty1}"/><br />

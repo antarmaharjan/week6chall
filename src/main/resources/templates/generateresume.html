@@ -1,38 +1,86 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head lang="en">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <title>Title</title>
+    <!--<title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>-->
+</head>
+<body>
+<header>
+    <div class="container" align="center"><h1><span class="highlight">Resume Building App</span></h1>
+        <div id="branding">
+            <!--<h1><span class="highlight">Resume Building App</span></h1>-->
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<section id="showcase">
+    <div class="container"></div>
+
+<h1>Resume App presents</h1>
+<h3 th:inline="text">[[${myPerson.name}]]</h3>
+<h4 th:inline="text">[[${myPerson.email}]]</h4>
+
+<a th:href="@{/index/{id} (id=${myPerson.id})}">Update</a> -
+<a th:href="@{/delete/{id} (id=${myPerson.id})}">Delete</a>
+<!--Just trying to get idea on upadate and delete-->
+
+
+<h2>Education:</h2>
+<div th:each="i:${myEducation}">
+    <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
+    <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
+</div>
+
+<p><a href="/addeducation">Add another educational experience</a></p>
+    <a th:href="@{/addeducation/update/{id}(id=${i.id})}">Update</a><br>
+
+<hr></hr>
+<br />
+<h2>Work Experience:</h2>
+<div th:each="i:${myjob}">
+    <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
+    <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
+    <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
+    <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
+</div>
+<p><a href="/addjob">Add another job</a></p>
+    <a th:href="@{/addjob/update/{id}(id=${aJob.id})}">Update</a><br>
+
+<hr></hr>
+<br />
+<h2>Skills:</h2>
+<div th:each="i:${mySkills}">
+    <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
+</div>
+<p><a href="/addskill">Add more skills</a></p>
+    <a th:href="@{/addskill/update/{id}(id=${i.id})}">Update</a><br>
+
+</section>
+
+</body>
+</html>
 <!--<!DOCTYPE html>-->
 <!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
 <!--<head lang="en">-->
     <!--<meta charset="UTF-8"/>-->
-    <!--<meta name="viewport" content="width=device-width">-->
-    <!--<title>Resume Building App</title>-->
-    <!--<link rel="stylesheet" href="/css/style.css"/>-->
-    <!--<title>Title</title>-->
-    <!--&lt;!&ndash;<title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>&ndash;&gt;-->
+    <!--<title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>-->
 <!--</head>-->
 <!--<body>-->
-<!--<header>-->
-    <!--<div class="container">-->
-        <!--<div id="branding">-->
-            <!--<h1><span class="highlight">Resume Building App</span></h1>-->
-        <!--</div>-->
-        <!--<nav>-->
-            <!--<ul>-->
-                <!--<li class="current"><a href="index.html">Home</a></li>-->
-                <!--<li><a href="/generateresume">Skip to resume</a></li>-->
-            <!--</ul>-->
-        <!--</nav>-->
-    <!--</div>-->
-<!--</header>-->
-<!--<section id="showcase">-->
-    <!--<div class="container"></div>-->
-
-<!--<h1>Resume App presents</h1>-->
+<!--<h1>Here is your Resume</h1>-->
 <!--<h3 th:inline="text">[[${myPerson.name}]]</h3>-->
 <!--<h4 th:inline="text">[[${myPerson.email}]]</h4>-->
 
 <!--<a th:href="@{/update/{id} (id=${myPerson.id})}">Update</a> - -->
 <!--<a th:href="@{/delete/{id} (id=${myPerson.id})}">Delete</a>-->
-<!--&lt;!&ndash;Just trying to get idea on upadate and delete&ndash;&gt;-->
-
 
 <!--<h2>Education:</h2>-->
 <!--<div th:each="i:${myEducation}">-->
@@ -51,7 +99,9 @@
     <!--<p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>-->
     <!--<p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>-->
 <!--</div>-->
+
 <!--<p><a href="/addjob">Add another job</a></p>-->
+
 
 <!--<hr></hr>-->
 <!--<br />-->
@@ -61,56 +111,9 @@
 <!--</div>-->
 <!--<p><a href="/addskill">Add more skills</a></p>-->
 
-<!--</section>-->
+
+
+<!--<h2><a href="/">Home</a></h2>-->
 
 <!--</body>-->
 <!--</html>-->
-<!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
-    <meta charset="UTF-8"/>
-    <title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>
-</head>
-<body>
-<h1>Robo Resume App presents</h1>
-<h3 th:inline="text">[[${myPerson.name}]]</h3>
-<h4 th:inline="text">[[${myPerson.email}]]</h4>
-
-<a th:href="@{/update/{id} (id=${myPerson.id})}">Update</a> -
-<a th:href="@{/delete/{id} (id=${myPerson.id})}">Delete</a>
-
-<h2>Education:</h2>
-<div th:each="i:${myEducation}">
-    <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
-    <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
-</div>
-
-<p><a href="/addeducation">Add another educational experience</a></p>
-
-<hr></hr>
-<br />
-<h2>Work Experience:</h2>
-<div th:each="i:${myjob}">
-    <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
-    <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
-    <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
-    <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
-</div>
-
-<p><a href="/addjob">Add another job</a></p>
-
-
-<hr></hr>
-<br />
-<h2>Skills:</h2>
-<div th:each="i:${mySkills}">
-    <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
-</div>
-<p><a href="/addskill">Add more skills</a></p>
-
-
-
-<h2><a href="/">Home</a></h2>
-
-</body>
-</html>

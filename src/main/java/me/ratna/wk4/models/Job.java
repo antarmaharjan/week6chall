@@ -1,5 +1,7 @@
 package me.ratna.wk4.models;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +18,9 @@ public class Job {
     @NotNull
     private String position;
     @NotNull
+    @DateTimeFormat(pattern = "MMM,yyyy")
     private String startDate;
+    @DateTimeFormat(pattern = "MMM,yyyy")
     private String endDate;
     private String duty1;
     private String duty2;

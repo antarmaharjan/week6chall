@@ -15,13 +15,13 @@
 </head>
 <body>
 <header>
-    <div class="container" align="center">
+    <div class="container" align="center"><h1><span class="highlight">Resume Building App</span></h1>
         <div id="branding">
-            <h1><span class="highlight">Resume Building App</span></h1>
+            <!--<h1><span class="highlight">Resume Building App</span></h1>-->
         </div>
         <nav>
             <ul>
-                <li class="current"><a href="index.html">Home</a></li>
+                <li class="current"><a href="index">Home</a></li>
                 <li><a href="/generateresume">Skip to resume</a></li>
             </ul>
         </nav>
@@ -29,6 +29,7 @@
 </header>
 
 <section id="showcase">
+    <div class="container"></div>
     <h3>On the base of your information here is what we get:</h3>
     <hr>
 
@@ -43,7 +44,6 @@
     <p th:inline="text">End Date: [[${aJob.endDate}]].</p>
     <p th:inline="text">Duty 1: [[${aJob.duty1}]].</p>
     <p th:inline="text">Duty 2: [[${aJob.duty2}]].</p>
-    <a th:href="@{/addjob/delete/{id}(id=${aJob.id})}">Delete</a>
     <a th:href="@{/addjob/update/{id}(id=${aJob.id})}">Update</a><br>
     <a class="btn btn-primary btn-xl " href="/addjob">Add more job!</a>
     <h5>OR</h5>

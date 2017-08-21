@@ -1,6 +1,7 @@
 package me.ratna.wk4.models;
 
 import org.hibernate.validator.constraints.Range;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -20,6 +21,7 @@ public class Education {
     private String degree;
     @NotNull
     @Range(min = 1950,max = 2099)
+    //@DateTimeFormat(pattern = "yyyy")
     private long gradyear;
 
     public long getGradyear() {
