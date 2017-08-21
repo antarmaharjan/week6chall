@@ -2,33 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width"/>
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <style type="text/css";>
+        a{
+            color: gold;
+        }
+    </style>
+
 </head>
 <body>
-<a class="nav-link" href="/generateresume">Skip to resume</a>
-<h1 id="homeHeading">Welcome to the resume builder</h1>
-<hr>
-
-<!--enter things here-->
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">Confirmation:</h3>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index.html">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
     </div>
-    <div class="panel-body">
-        <p th:inline="text">Skill: [[${aSkill.skill}]].</p>
-        <p th:inline="text">Rating: [[${aSkill.rating}]].</p>
+</header>
+
+<section id="showcase">
+    <div class="container"></div>
+    <h2 class="panel-title">Confirmation:</h2>
+    <hr>
+
+    <!--enter things here-->
+    <div class="panel panel-default"></div>
+    <div class="panel-heading"></div>
 
 
+        <div class="panel-body">
+            <p th:inline="text">Skill: [[${aSkill.skill}]].</p>
+            <p th:inline="text">Rating: [[${aSkill.rating}]].</p>
+            <!--<a th:href="@{/addjob/delete/{id}(id=${aSkill.id})}">Delete</a>-->
+            <!--<a th:href="@{/addjob/update/{id}(id=${aSkill.id})}">Update</a><br>-->
+            <a href="/addskill">Add another skill</a><h5>OR</h5>
+            <a href="/generateresume">See the profile now!</a>
 
+        </div>
+    <!--<h4><a href="/addskill">Add another skill</a></h4>-->
+    <!--<h4><a href="/generateresume">Lets see the profile now!</a></h4>-->
+</section>
+    <footer>
+    <p>Resume Buildiing App, Copyright &copy; 2017</p>
+</footer>
 
-    </div>
-</div>
-<h2><a href="/addskill">Add another skill</a></h2>
-<br />
-<h1><a href="/generateresume">Lets build up your resume</a></h1>
-
-
-</div>
 
 </body>
 </html>

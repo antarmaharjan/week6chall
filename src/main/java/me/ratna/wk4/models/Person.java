@@ -1,5 +1,7 @@
 package me.ratna.wk4.models;
 
+import org.hibernate.validator.constraints.Email;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,6 +18,7 @@ public class Person {
     private String name;
 
     @NotNull
+    @Email
     private String email;
 
     private ArrayList<Job> jobs;

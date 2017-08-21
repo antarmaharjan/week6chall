@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.Id;
 import javax.validation.Valid;
 
+import java.util.ArrayList;
+
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Controller
@@ -47,33 +49,6 @@ public class HomeController {
         personRepository.save(newPerson);
         return"confirmperson";
     }
-//    @GetMapping("/addeducation")
-//    public String addeducationto(Model model)
-//    {
-//        System.out.println(educationRepository.count());
-//
-//        if(educationRepository.count()>=10)
-//        {
-//            return "limit";
-//        }
-//
-//        model.addAttribute("neweducation", new Education());
-//        return "addeducation";
-//
-//    }
-//
-//    @PostMapping("/addeducation")
-//    public String posteducation(@Valid @ModelAttribute("neweducation") Education education, BindingResult bindingResult)
-//    {
-//        if(bindingResult.hasErrors())
-//        {
-//            return "addeducation";
-//        }
-//
-//        educationRepository.save(education);
-//        return "confirmeducation";
-//    }
-
     @GetMapping("/addeducation")
     public String addEducation(Model toSend){
 
@@ -116,34 +91,77 @@ public class HomeController {
         }
         skillRepository.save(aSkill);
         return "confirmskill";
+
     }
-    @GetMapping("/generateresume")
-    public String generateResume(Model toSend, @ModelAttribute("newPerson") Person newPerson){
+    @GetMapping("/generateresume1")
+    public String generateResume(Model toSend){
         //maybe have buttons to add more education, work, or skills
 
-        Person myPeep = personRepository.findById(1);
-        System.out.println("my friends name is " + myPeep.getName());
-        toSend.addAttribute("myPerson",myPeep);
+        Person person = personRepository.findById(1);
+        System.out.println("name is " + person.getName());
+        toSend.addAttribute("myPerson",person);
 
-        Iterable<Education> learnz = educationRepository.findAll();
-        toSend.addAttribute("myEducation", learnz);
-        Iterable<Job> workz = jobRepository.findAll();
-        toSend.addAttribute("myWork", workz);
-        Iterable<Skill> skillz = skillRepository.findAll();
-        toSend.addAttribute("mySkills",skillz);
-        return "generateresume";
+        Iterable<Education> edu = educationRepository.findAll();
+        toSend.addAttribute("myEducation", edu);
+        Iterable<Job> job = jobRepository.findAll();
+        toSend.addAttribute("myWork", job);
+        Iterable<Skill> skill = skillRepository.findAll();
+        toSend.addAttribute("mySkills",skill);
+        return "generateresume1";
     }
     //For delete and edit
-    @GetMapping("/delete/{id}")
+    @GetMapping("/addjob/update/{id}")
+    public String defaultRequest4 (@PathVariable ("id") long id,Model model){
+        Job job =jobRepository.findOne(id);
+        model.addAttribute("aJob",job);
+        return "addjob";
+    }
+
+//    @GetMapping("/detail/{id}")
+//    public String showdetail(@PathVariable("id") long id,Model model){
+//        Person person = personRepository.findOne(id);
+//        model.addAttribute("newPerson", person);
+//        return "generateresume";
+//    }
+    @GetMapping("/addjob/delete/{id}")
     public String delete(@PathVariable("id") long id){
-        personRepository.delete(id);
+        jobRepository.delete(id);
         return "redirect:/addskill";
     }
-    @GetMapping("/update/{id}")
-    public String update(@PathVariable("id") long id,Model model){
-        Person person = personRepository.findOne(id);
-        model.addAttribute("newPerson", person);
+    @GetMapping("/index/update/{id}")
+    public String defaultRequest5 (@PathVariable ("id") long id,Model model){
+        Person person =personRepository.findOne(id);
+        model.addAttribute("newPerson",person);
         return "index";
     }
+    @GetMapping("/addeducation/update/{id}")
+    public String defaultRequest6 (@PathVariable ("id") long id,Model model){
+        Education education =educationRepository.findOne(id);
+        model.addAttribute("newEducation",education);
+        return "addeducation";
+    }
+    @GetMapping("/addeducation/delete/{id}")
+    public String delete1(@PathVariable("id") long id){
+        educationRepository.delete(id);
+        return "redirect:/addjob";
+    }
+//    @RequestMapping("/update/{id}")
+//    public String update(@PathVariable("id") long id,Model model){
+//        Person person = personRepository.findOne(id);
+//        model.addAttribute("newPerson", person);
+//        return "addskill";
+//    }
+
+//    @GetMapping("/delete/{id}")
+//    public String delete(@PathVariable("id") long id){
+//        personRepository.delete(id);
+//        return "addskill";
+//    }
+//    @GetMapping("/update/{id}")
+//    public String update(@PathVariable("id") long id,Model model){
+//        Person person = personRepository.findOne(id);
+//        model.addAttribute("newPerson", person);
+//        return "addskill";
+//    }
 
 }

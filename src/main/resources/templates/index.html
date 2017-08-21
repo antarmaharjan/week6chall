@@ -2,24 +2,44 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
     <title>Title</title>
 </head>
 <body>
-<a class="nav-link" href="/generateresume">Skip to resume</a>
-<h1 id="homeHeading">Welcome to the Resume Builder App</h1>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index.html">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="showcase">
+    <div class="container">
+        <h2 id="homeHeading">Welcome to the Resume Builder App</h2>
+    </div>
 <hr>
 <h3>Please enter your name and email below.</h3>
-
+    <hr>
 <!--enter things here-->
 <form action="#"
       th:action="@{/}"
       th:object="${newPerson}"
       method="post">
     <ul>
-        Name: <Input type="text" th:field="*{name}"/>
+        Name: <Input required type="text" th:field="*{name}"/>
         <span th:if="${#fields.hasErrors('name')}"
               th:errors="*{name}"></span><br />
-        Email: <Input type="text" th:field="*{email}"/>
+        <br>
+        Email: <Input required type="email" th:field="*{email}"/>
         <span th:if="${#fields.hasErrors('email')}"
               th:errors="*{email}"></span><br />
     </ul>
@@ -27,6 +47,10 @@
      <!--<p><Input type="reset" value="spelled wrong"/></p>-->
 
 </form>
+</section>
+    <footer>
+        <p>Resume Buildiing App, Copyright &copy; 2017</p>
+    </footer>
 
 
 </body>

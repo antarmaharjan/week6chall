@@ -2,34 +2,61 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
     <title>Title</title>
 </head>
 <body>
-<a class="nav-link" href="/generateresume">Skip to resume</a>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index.html">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-<h1>Enter your Educational information here.</h1>
-<hr>
-<!--enter things here-->
-<form action="#"
-      th:action="@{/addeducation}"
-      th:object="${anEducation}"
-      method="post">
-    <ul>
-        School: <input th:type="text" th:field="*{school}"/> <br />
-        <span th:if="${#fields.hasErrors('school')}"
-              th:errors="*{school}"></span><br />
-        Degree: <input th:type="text" th:field="*{degree}"/><br />
-        <span th:if="${#fields.hasErrors('degree')}"
-              th:errors="*{degree}"></span><br />
-        Graduation Date(MM/YYYY): <input th:type="text" th:field="*{gradyear}"/><br />
-        <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}">This field has to be in desired format
+<section id="showcase">
+    <div class="container">
+
+    </div>
+
+    <h3>Enter your Educational information here.</h3>
+    <hr>
+    <!--enter things here-->
+    <form action="#"
+          th:action="@{/addeducation}"
+          th:object="${anEducation}"
+          method="post">
+        <ul>
+            School: <input required th:type="text" th:field="*{school}"/> <br />
+            <span th:if="${#fields.hasErrors('school')}"
+                  th:errors="*{school}"></span><br />
+            Degree: <input required th:type="text" th:field="*{degree}"/><br />
+            <span th:if="${#fields.hasErrors('degree')}"
+                  th:errors="*{degree}"></span><br />
+            <div>
+                <label>Graduation Year:</label>
+                <input  year required th:type="numbers" name="gradyear"  th:field="*{gradyear}"/><br />
+                <span th:if="${#fields.hasErrors('gradyear')}" th:error="*{gradyear}">Numerical value required
               </span><br/>
+            </div>
+        </ul>
 
-    </ul>
+        <input type="submit" value="Add Education"/> <input type="reset" value="Clear Form"/>
 
-    <input type="submit" value="Add Education"/> <input type="reset" value="Clear Form"/>
+    </form>
+</section>
+<footer>
+    <p>Resume Buildiing App, Copyright &copy; 2017</p>
+</footer>
 
-</form>
 
 </body>
 </html>

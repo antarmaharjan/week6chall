@@ -1,5 +1,7 @@
 package me.ratna.wk4.models;
 
+import org.hibernate.validator.constraints.Range;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ public class Education {
     @NotNull
     private String degree;
     @NotNull
+    @Range(min = 1950,max = 2099)
     private long gradyear;
 
     public long getGradyear() {

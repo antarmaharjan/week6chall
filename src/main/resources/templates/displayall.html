@@ -2,41 +2,69 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
-    <title>Display all</title>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <title>Dispaly all</title>
 </head>
 <body>
-<table border="1" cellpadding="5">
-    <tr>
-        <td><b>Person Id</p></b></td>
-        <td><b>Person's Name</p></b></td>
-        <td><b>Person's Email</p></b></td>
-        <td><b>Actions</b></td>
-    </tr>
-    <!--a comment-->
-    <!--iterate through all the items-->
-    <th:block th:each="i:${allinfos}">
-        <tr>
-            <td><p th:text="${person.id}"></p></td>
-            <td><p th:text="${person.name}"></p></td>
-            <td><p th:text="${person.email}"></p></td>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="index.html">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
-            <td>
-                <a th:href="@{/update/{id} (id=${person.id})}">Update</a> -
-                <a th:href="@{/delete/{id} (id=${person.name})}">Delete</a>
-            </td>
+<section id="showcase">
+    <div class="container"></div>
+
+    <hr>
+    <table border="1" cellpadding="5">
+        <tr>
+            <td><b>Person Id</p></b></td>
+            <td><b>Person's Name</p></b></td>
+            <td><b>Person's Email</p></b></td>
+            <td><b>Actions</b></td>
         </tr>
-    </th:block>
-</table>
-<form action="/addeducation">
-    <input type="submit" value="Add Education">
-<form action="/addskill">
-        <input type="submit" value="Add Skill">
-</form>
-<form action="/addjob">
-    <input type="submit" value="Add Job">
-</form>
-<form action="/">
-    <input type="submit" value="Home">
+        <!--a comment-->
+        <!--iterate through all the items-->
+        <th:block th:each="i:${allinfos}">
+            <tr>
+                <td><p th:text="${person.id}"></p></td>
+                <td><p th:text="${person.name}"></p></td>
+                <td><p th:text="${person.email}"></p></td>
+
+                <td>
+                    <a th:href="@{/update/{id} (id=${person.id})}">Update</a> -
+                    <a th:href="@{/delete/{id} (id=${person.name})}">Delete</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+    <!--<form action="/addeducation">-->
+        <!--<input type="submit" value="Add Education">-->
+    <!--</form>-->
+        <!--<form action="/addskill">-->
+            <!--<input type="submit" value="Add Skill">-->
+        <!--</form>-->
+        <!--<form action="/addjob">-->
+            <!--<input type="submit" value="Add Job">-->
+        <!--</form>-->
+        <!--<form action="/">-->
+            <!--<input type="submit" value="Home">-->
+        <!--</form>-->
+</section>
+<footer>
+    <p>Resume Buildiing App, Copyright &copy; 2017</p>
+</footer>
+
 
 </body>
 </html>

@@ -1,33 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
-<a class="nav-link" href="/generateresume">Skip to resume</a>
-<h1>Please Enter your Skill here</h1>
-<hr>
 
-<!--enter things here-->
-<form action="#"
-      th:action="@{/addskill}"
-      th:object="${aSkill}"
-      method="post">
-    <ul>
-        Skill: <input th:type="text" th:field="*{skill}"/> <br />
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Resume Buildiing App</title>
+    <link rel="stylesheet" href="/css/style.css">
+  </head>
+  <body>
+    <header>
+
+      <div class="container" align="center">
+        <div class="container">
+          <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+          </div>
+        <div>
+        </div>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="generateresume">Skip to resume</a></li>
+          </ul>
+        </nav>
+        </div>
+      </div>
+    </header>
+<section id="showcase">
+        <div class="container"></div>
+    <h3>Please Enter your Skill here</h3>
+    <hr>
+    <form action="#"
+          th:action="@{/addskill}"
+          th:object="${aSkill}"
+          method="post">
+      <ul>
+        Skill: <input required th:type="text" th:field="*{skill}"/> <br />
         <span th:if="${#fields.hasErrors('skill')}"
               th:errors="*{skill}"></span><br />
-        Rating: <input th:type="text" th:field="*{rating}"/><br />
+        Rating: <input  required th:type="text" th:field="*{rating}"/><br />
         <span th:if="${#fields.hasErrors('rating')}"
               th:errors="*{rating}"></span><br />
-
-    </ul>
-
-    <input type="submit" value="Add Skill"/> <input type="reset" value="Clear Form"/>
-
-</form>
-
-
-</body>
+      </ul>
+      <input type="submit" value="Add Skill"/> <input type="reset" value="Clear Form"/>
+    </form>
+</section>
+    <footer>
+      <p>Resume Building App, Ratna &copy; 2017</p>
+    </footer>
+  </body>
 </html>

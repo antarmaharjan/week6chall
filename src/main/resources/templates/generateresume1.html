@@ -9,7 +9,7 @@
 </head>
 <body>
 <header>
-    <div class="container" align="center">
+    <div class="container">
         <div id="branding">
             <h1><span class="highlight">Resume Building App</span></h1>
         </div>
@@ -25,15 +25,14 @@
 <section id="showcase">
     <div class="container"></div>
 
-
-    <h3>Add your work experience</h3>
     <hr>
+    <h3><h1>Add your work experience</h1></h3>
     <!--enter things here-->
     <form action="#"
           th:action="@{/addjob}"
           th:object="${aJob}"
           method="post">
-        <div>
+        <ul>
             Employer: <input required th:type="text" th:field="*{employer}"/> <br />
             <span th:if="${#fields.hasErrors('employer')}"
                   th:errors="*{employer}"></span><br />
@@ -41,19 +40,22 @@
             <span th:if="${#fields.hasErrors('position')}"
                   th:errors="*{position}"></span><br />
 
-            Start Date(MM/YYYY): <input required type="date" th:field="*{startDate}"/><br/>
-            <span th:if="${#fields.hasErrors('startDate')}"th:error="*{startDate}">Date format error</span><br/>
-            End Date(MM/YYYY)(Write 'Cont' if still working): <input required type="date" th:field="*{endDate}"/> <br />
-            <span th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}">Date format error</span><br />
+            Start Date(MM/YYYY): <input required th:type="date" th:field="*{startDate}"/><br />
+            <span th:if="${#fields.hasErrors('startDate')}"th:error="*{startDate}"></span><br/>
+
+
+            End Date(Write 'Cont' if still working): <input required th:type="date" th:field="*{endDate}"/> <br />
+            <span th:if="${#fields.hasErrors('endDate')}"th:errors="*{endDate}"></span><br />
             Duty 1: <input required th:type="text" th:field="*{duty1}"/><br />
             <span th:if="${#fields.hasErrors('duty1')}"
                   th:errors="*{duty1}"></span><br />
-            Duty 2: <input required th:type="text" th:field="*{duty2}"/><br />
+            Duty 2: <input th:type="text" th:field="*{duty2}"/><br />
             <span th:if="${#fields.hasErrors('duty2')}"
-                  th:errors="*{duty2}"></span><br /></label>
-            <input  required type="submit" value="Save"/> <input type="reset" value="Clear Form"/>
+                  th:errors="*{duty2}"></span><br />
 
-        </div>
+        </ul>
+
+        <input type="submit" value="Add Job"/> <input type="reset" value="Clear Form"/>
 
     </form>
 

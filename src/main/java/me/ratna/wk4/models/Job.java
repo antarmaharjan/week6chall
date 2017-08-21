@@ -13,6 +13,7 @@ public class Job {
     private long id;
     @NotNull
     private String employer;
+    @NotNull
     private String position;
     @NotNull
     private String startDate;
