@@ -5,17 +5,17 @@
     <meta name="viewport" content="width=device-width">
     <title>Resume Building App</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    <title>Title</title>
+
 </head>
 <body>
 <header>
-    <div class="container" align="center">
+    <div class="container">
         <div id="branding">
             <h1><span class="highlight">Resume Building App</span></h1>
         </div>
         <nav>
             <ul>
-                <li class="current"><a href="index.html">Home</a></li>
+                <li class="current"><a href="/">Home</a></li>
                 <li><a href="/generateresume">Skip to resume</a></li>
             </ul>
         </nav>
@@ -38,7 +38,6 @@
             Position: <input required th:type="text" th:field="*{position}"/><br />
             <span th:if="${#fields.hasErrors('position')}"
                   th:errors="*{position}"></span><br />
-
             Start Date(MM/YYYY): <input required type="date" th:field="*{startDate}"/><br/>
             <span th:if="${#fields.hasErrors('startDate')}"th:error="*{startDate}">
                 <small class="form-error" data-errors-when="valueMissing">Error.</small>Date format error</span><br/>
@@ -50,7 +49,10 @@
             Duty 2: <input required th:type="text" th:field="*{duty2}"/><br />
             <span th:if="${#fields.hasErrors('duty2')}"
                   th:errors="*{duty2}"></span><br /></label>
-            <input  required type="submit" value="Save"/> <input type="reset" value="Clear Form"/>
+            <!--<input  required type="submit" value="Save"/>-->
+            <input type="submit" value="Add Work Experiences"/>
+            <!--<input type="submit" value="Add More experiences"/>-->
+            <input type="reset" value="Clear Form"/>
 
         </div>
 

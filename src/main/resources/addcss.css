@@ -14,7 +14,7 @@ a:visited{
 .button:hover{
     background-color: #333;
     color:#fff;
-    padding: 10px 15px;
+    /*padding: 10px 15px;*/
     border: none;
 }
 .button:hover{

@@ -34,10 +34,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String index(Model toSend){
-        //welcome to the roboresume 3000.  please enter a name and email to continue
-        //click a button to continue
         toSend.addAttribute("newPerson", new Person());
-
         return "index";
     }
     @PostMapping("/")
@@ -53,7 +50,6 @@ public class HomeController {
     public String addEducation(Model toSend){
 
         toSend.addAttribute("anEducation", new Education());
-
         return "addeducation";
     }
     @PostMapping("/addeducation")
@@ -91,13 +87,11 @@ public class HomeController {
         }
         skillRepository.save(aSkill);
         return "confirmskill";
-
     }
     @GetMapping("/generateresume")
     public String generateResume(Model toSend){
-        //maybe have buttons to add more education, work, or skills
 
-        Person person = personRepository.findById(2);
+        Person person = personRepository.findById(1);
         System.out.println("name is " + person.getName());
         toSend.addAttribute("myPerson",person);
 
@@ -116,26 +110,19 @@ public class HomeController {
         model.addAttribute("aJob",job);
         return "addjob";
     }
-
-//    @GetMapping("/detail/{id}")
-//    public String showdetail(@PathVariable("id") long id,Model model){
-//        Person person = personRepository.findOne(id);
-//        model.addAttribute("newPerson", person);
-//        return "generateresume";
-//    }
     @GetMapping("/addjob/delete/{id}")
     public String delete(@PathVariable("id") long id){
         jobRepository.delete(id);
         return "redirect:/addskill";
     }
     @GetMapping("/index/update/{id}")
-    public String defaultRequest5 (@PathVariable ("id") long id,Model model){
+    public String updatePerson (@PathVariable ("id") long id,Model model){
         Person person =personRepository.findOne(id);
         model.addAttribute("newPerson",person);
         return "index";
     }
     @GetMapping("/confirmeducation/update/{id}")
-    public String defaultRequest6 (@PathVariable ("id") long id,Model model){
+    public String updateeducation (@PathVariable ("id") long id,Model model){
         Education education =educationRepository.findOne(id);
         model.addAttribute("newEducation",education);
         return "addeducation";
