@@ -25,46 +25,36 @@
 <section id="showcase">
     <div class="container"></div>
 
-    <hr>
-    <table border="1" cellpadding="5">
-        <tr>
-            <td><b>Person Id</p></b></td>
-            <td><b>Person's Name</p></b></td>
-            <td><b>Person's Email</p></b></td>
-            <td><b>Actions</b></td>
-        </tr>
-        <!--a comment-->
-        <!--iterate through all the items-->
-        <th:block th:each="i:${allinfos}">
-            <tr>
-                <td><p th:text="${person.id}"></p></td>
-                <td><p th:text="${person.name}"></p></td>
-                <td><p th:text="${person.email}"></p></td>
 
-                <td>
-                    <a th:href="@{/update/{id} (id=${person.id})}">Update</a> -
-                    <a th:href="@{/delete/{id} (id=${person.name})}">Delete</a>
-                </td>
-            </tr>
-        </th:block>
-    </table>
-    <!--<form action="/addeducation">-->
-        <!--<input type="submit" value="Add Education">-->
-    <!--</form>-->
-        <!--<form action="/addskill">-->
-            <!--<input type="submit" value="Add Skill">-->
-        <!--</form>-->
-        <!--<form action="/addjob">-->
-            <!--<input type="submit" value="Add Job">-->
-        <!--</form>-->
-        <!--<form action="/">-->
-            <!--<input type="submit" value="Home">-->
-        <!--</form>-->
+        <h2> <title th:inline="text"> [[${myPerson.name}]]'s New Resume</title></h2>
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Education</th>
+                    <div th:each="i:${myEducation}">
+                        <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
+                        <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
+                    </div>
+                    <th>Work Experience</th>
+                    <div th:each="i:${myWork}">
+                        <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
+                        <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
+                        <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
+                        <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
+                    </div>
+                    <th>Skills</th>
+                    <div th:each="i:${mySkills}">
+                        <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
+                    </div>
+
+                </tr>
+                </thead>
+
+            </table>
+        </div>
+    </div>
 </section>
-<footer>
-    <p>Resume Buildiing App, Copyright &copy; 2017</p>
-</footer>
-
 
 </body>
 </html>

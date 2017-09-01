@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
+<head th:fragment="headingpart">
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width">
     <title>Resume Building App</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    <title>Title</title>
 </head>
 <body>
-<header>
+<header th:fragment="headerpart">
     <div class="container" align="center">
         <div id="branding">
             <h1><span class="highlight">Resume Building App</span></h1>
@@ -48,10 +47,7 @@
 
 </form>
 </section>
-    <footer>
-        <p>Resume Buildiing App, Copyright &copy; 2017</p>
-    </footer>
-
+<footer align="center" th:replace="fragment :: footerpart"/>
 
 </body>
 </html>

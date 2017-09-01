@@ -1,15 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:min-height="http://www.w3.org/1999/xhtml" xmlns:background="http://www.w3.org/1999/xhtml">
+<head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Ratna Maharjan">
     <title>Resume Building App</title>
     <link rel="stylesheet" href="/css/style.css"/>
-    <style type="text/css";>
-        a{
-            color: yellow;
-        }
-    </style>
+
 
     <title th:inline="text"> [[${myPerson.name}]]'s New Resume</title>
 </head>
@@ -24,46 +22,92 @@
             <ul>
                 <li class="current"><a href="/">Home</a></li>
                 <li><a href="/generateresume">Skip to resume</a></li>
-                <li><a th:href="@{/displayall/{id} (id=${myPerson.id})}">view Resume</a></li>
+                <!--<li><a th:href="@{/displayall/{id} (id=${myPerson.id})}">view Resume</a></li>-->
             </ul>
         </nav>
     </div>
 </header>
-<section id="showcase">
-    <div class="container" ></div>
+<div class="container" align="center">
+    <h2>Resume App presents</h2>
+    <p th:inline="text">Name:[[${myPerson.name}]]</p>
+    <p th:inline="text">Email:[[${myPerson.email}]]</p>
+    <a href="/delete">delete all records</a>
+    <hr>
+    <h2>Education:</h2>
+    <div class="table-responsive">
+        <table border="1" class ="table">
+            <thead>
+            <tr>
+                <th>Degree</th>
+                <th>School</th>
+                <th>Graduation Year</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i:${myEducation}">
+                <td th:text="${i.degree}"></td>
+                <td th:text="${i.school}"></td>
+                <td th:text="${i.gradyear}"></td>
+            </tr>
+            </tbody>
+        </table>
 
-<h3>Resume App presents</h3>
-<h3 th:inline="text">[[${myPerson.name}]]</h3>
-<h4 th:inline="text">[[${myPerson.email}]]</h4>
-
-<!--<a th:href="@{/index/{id} (id=${myPerson.id})}">Update</a>-->
-<!--<a th:href="@{/delete/{id} (id=${myPerson.id})}">Delete</a>-->
-
-<h3>Education:</h3>
-<div th:each="i:${myEducation}">
-    <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
-    <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
-</div>
+    </div>
     <p><a href="/addeducation">Add more education</a></p>
-<hr>
-<h3>Work Experience:</h3>
-<div th:each="i:${myjob}">
-    <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
-    <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
-    <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
-    <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
+    <hr>
+    <h2>Work Experience:</h2>
+    <div class="table-responsive">
+        <table border="1" class ="table">
+            <thead>
+            <tr>
+                <th>Position</th>
+                <th>Employer</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+                <th>Duty 1</th>
+                <th>Duty 2</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i:${myWork}">
+                <td th:text="${i.position}"></td>
+                <td th:text="${i.employer}"></td>
+                <td th:text="${i.startDate}"></td>
+                <td th:text="${i.endDate}"></td>
+                <td th:text="${i.duty1}"></td>
+                <td th:text="${i.duty2}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/addjob">Add more job</a></p>
+
+    <!--<a th:href="@{/index/update/{id}(id=${newPerson.id})}">Update</a>-->
+    <hr>
+    <h2>Skills:</h2>
+    <div class="table-responsive">
+        <table border="1" class ="table">
+            <thead>
+            <tr>
+                <th>Skill</th>
+                <th>Rating</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="i:${mySkills}">
+                <td th:text="${i.skill}"></td>
+                <td th:text="${i.rating}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p><a href="/addskill">Add more skills</a></p>
+    <!--&lt;!&ndash;<a th:href="@{/addskill/update/{id}(id=${aSkill.id})}">Update</a><br>&ndash;&gt;-->
+    <!--</section>-->
 </div>
-<p><a href="/addjob">Add another job</a></p>
-    <!--<a th:href="@{/addjob/update/{id}(id=${aJob.id})}">Update</a><br>-->
-<hr>
-<br>
-<h3>Skills:</h3>
-<div th:each="i:${mySkills}">
-    <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
-</div>
-<p><a href="/addskill">Add more skills</a></p>
-    <!--<a th:href="@{/addskill/update/{id}(id=${aSkill.id})}">Update</a><br>-->
-</section>
+
+<footer th:align="center" th:replace="fragment :: footerpart"/>
 
 </body>
 </html>

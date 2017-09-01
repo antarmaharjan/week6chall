@@ -2,10 +2,7 @@ package me.ratna.wk4.models;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -24,6 +21,22 @@ public class Job {
     private String endDate;
     private String duty1;
     private String duty2;
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public Person getPerson() {
+        return person;
+    }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="person_id")
+    private Person person;
 
     public String getEmployer() {
         return employer;

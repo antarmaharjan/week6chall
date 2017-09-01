@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <title>Dispaly all</title>
+</head>
+<body>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="/">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<section id="showcase">
+    <div class="container"></div>
+
+
+    <h2> <title th:inline="text"> [[${myPerson.name}]]'s New Resume</title></h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Education</th>
+                <div th:each="i:${myEducation}">
+                    <p th:inline="text"><strong>[[${i.degree}]]</strong>, </p>
+                    <p th:inline="text">[[${i.school}]], [[${i.gradyear}]] </p>
+                </div>
+                <th>Work Experience</th>
+                <div th:each="i:${myWork}">
+                    <p th:inline="text"><strong>[[${i.position}]]</strong> </p>
+                    <p th:inline="text">[[${i.employer}]], [[${i.startDate}]] - [[${i.endDate}]]</p>
+                    <p th:inline="text"> -Duty 1: [[${i.duty1}]]</p>
+                    <p th:inline="text"> -Duty 2: [[${i.duty2}]]</p>
+                </div>
+                <th>Skills</th>
+                <div th:each="i:${mySkills}">
+                    <p th:inline="text">Skill: [[${i.skill}]]; [[${i.rating}]]</p>
+                </div>
+
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+    </div>
+</section>
+
+</body>
+</html>

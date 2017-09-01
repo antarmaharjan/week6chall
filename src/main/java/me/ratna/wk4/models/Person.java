@@ -2,12 +2,10 @@ package me.ratna.wk4.models;
 
 import org.hibernate.validator.constraints.Email;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.ArrayList;
+import java.util.Set;
 
 @Entity
 public class Person {
@@ -16,10 +14,16 @@ public class Person {
     private long id;
     @NotNull
     private String name;
-
     @NotNull
     @Email
     private String email;
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Job> morejob;
+
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Education> moreEducation;
+    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Skill> moreSkill;
 
     private ArrayList<Job> jobs;
     private ArrayList<Education> educations;
@@ -65,6 +69,27 @@ public class Person {
     public void setSkills(ArrayList<Skill> skills) {
         this.skills = skills;
     }
+    public Set<Job> getMorejob() {
+        return morejob;
+    }
 
+    public void setMorejob(Set<Job> morejob) {
+        this.morejob = morejob;
+    }
 
+    public Set<Education> getMoreEducation() {
+        return moreEducation;
+    }
+
+    public void setMoreEducation(Set<Education> moreEducation) {
+        this.moreEducation = moreEducation;
+    }
+
+    public Set<Skill> getMoreSkill() {
+        return moreSkill;
+    }
+
+    public void setMoreSkill(Set<Skill> moreSkill) {
+        this.moreSkill = moreSkill;
+    }
 }

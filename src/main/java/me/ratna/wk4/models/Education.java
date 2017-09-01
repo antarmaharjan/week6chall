@@ -3,10 +3,7 @@ package me.ratna.wk4.models;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -23,6 +20,9 @@ public class Education {
     @Range(min = 1950,max = 2099)
     //@DateTimeFormat(pattern = "yyyy")
     private long gradyear;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="person_id")
+    private Person person;
 
     public long getGradyear() {
         return gradyear;
@@ -49,6 +49,12 @@ public class Education {
     public void setDegree(String degree) {
 
             this.degree = degree;
+    }
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+    public Person getPerson() {
+        return person;
     }
 
 }

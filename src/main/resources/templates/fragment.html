@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head th:fragment="headingpart">
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <meta name="author" content="Ratna Maharjan">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+</head>
+<body>
+<header th:fragment="headerpart">
+    <div class="container" align="center">
+        <div id="branding">
+            <h1><span class="highlight">Resume Building App</span></h1>
+        </div>
+        <nav>
+            <ul>
+                <li class="current"><a href="/">Home</a></li>
+                <li><a href="/generateresume">Skip to resume</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</body>
+<footer align="center" th:fragment="footerpart">
+    <p>Resume Buildiing App, Copyright &copy; 2017</p>
+</footer>

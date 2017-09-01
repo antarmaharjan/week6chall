@@ -13,18 +13,19 @@
     <title>Title</title>
 </head>
 <body>
-<header>
-    <div class="container" align="center">
-        <div id="branding">
-            <h1><span class="highlight">Resume Building App</span></h1>
-        </div>
-        <nav>
-            <ul>
-                <li class="current"><a href="index.html">Home</a></li>
-                <li><a href="/generateresume">Skip to resume</a></li>
-            </ul>
-        </nav>
-    </div>
+<header th:replace="fragment :: headerpart"/>
+
+    <!--<div class="container" align="center">-->
+        <!--<div id="branding">-->
+            <!--<h1><span class="highlight">Resume Building App</span></h1>-->
+        <!--</div>-->
+        <!--<nav>-->
+            <!--<ul>-->
+                <!--<li class="current"><a href="index.html">Home</a></li>-->
+                <!--<li><a href="/generateresume">Skip to resume</a></li>-->
+            <!--</ul>-->
+        <!--</nav>-->
+    <!--</div>-->
 </header>
 
 <section id="showcase">
@@ -48,9 +49,8 @@
     </div>
     <!--<a class="btn btn-primary btn-xl" href="/addeducation">Right,that's me!</a>-->
 </section>
-    <footer>
-    <p>Resume Buildiing App, Copyright &copy; 2017</p>
-</footer>
+<footer th:align="center" th:replace="fragment :: footerpart"/>
+
 
 
 </body>

@@ -1,9 +1,6 @@
 package me.ratna.wk4.models;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -15,6 +12,10 @@ public class Skill {
     private String skill;
     @NotNull
     private String rating;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name="person_id")
+    private Person person;
 
     public long getId() {
         return id;
@@ -35,6 +36,16 @@ public class Skill {
     public void setRating(String rating) {
         this.rating = rating;
     }
+    public void setId(long id) {
+        this.id = id;
+    }
 
+    public Person getPerson() {
+        return person;
+    }
 
+    public void setPerson(Person person) {
+        this.person = person;
+
+    }
 }

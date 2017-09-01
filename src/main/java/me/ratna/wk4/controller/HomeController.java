@@ -14,10 +14,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.Valid;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
@@ -32,42 +33,54 @@ public class HomeController {
     @Autowired
     SkillRepository skillRepository;
 
+    @RequestMapping("/login")
+    public String logon() {
+        return "login";
+    }
+
     @GetMapping("/")
-    public String index(Model toSend){
-        toSend.addAttribute("newPerson", new Person());
+    public String index(Model model) {
+        model.addAttribute("newPerson", new Person());
         return "index";
     }
+
     @PostMapping("/")
-    public String index(@Valid @ModelAttribute("newPerson") Person newPerson, Model toSend, BindingResult result){
+    public String index(@Valid @ModelAttribute("newPerson") Person newPerson, Model toSend, BindingResult result) {
         System.out.println(result.toString());
-        if(result.hasErrors()){
-            return"index";
+        if (result.hasErrors()) {
+            return "index";
         }
         personRepository.save(newPerson);
-        return"confirmperson";
+        return "confirmperson";
     }
-    @GetMapping("/addeducation")
-    public String addEducation(Model toSend){
 
-        toSend.addAttribute("anEducation", new Education());
+    @GetMapping("/addeducation")
+    public String addEducation(Model model) {
+
+        model.addAttribute("anEducation", new Education());
         return "addeducation";
     }
+
     @PostMapping("/addeducation")
-    public String confirmEducationAndAddMore(@Valid @ModelAttribute("anEducation") Education anEducation,Model toSend, BindingResult result){
-        if(result.hasErrors()){
+    public String confirmEducation(@Valid @ModelAttribute("anEducation") Education anEducation, Model model, BindingResult result) {
+        if (result.hasErrors()) {
             return "addeducation";
         }
         educationRepository.save(anEducation);
+        //additional line
+        model.addAttribute("numberOfEdu", educationRepository.count());
         return "confirmeducation";
     }
+
     @GetMapping("/addjob")
-    public String addwork(Model toSend,@ModelAttribute("newPerson") Person newPerson){
-        toSend.addAttribute("aJob", new Job());
+    public String addwork(Model model, @ModelAttribute("newPerson") Person newPerson) {
+        model.addAttribute("aJob", new Job());
         return "addjob";
     }
+
     @PostMapping("/addjob")
-    public String confirmWorkAndAddMore(@Valid @ModelAttribute("aJob") Job aJob, @ModelAttribute("newPerson") Person newPerson, BindingResult result){
-        if(result.hasErrors()){
+    public String confirmjob(@Valid @ModelAttribute("aJob") Job aJob, @ModelAttribute("newPerson") Person newPerson, BindingResult result) {
+        if (result.hasErrors()) {
             return "addjob";
         }
         jobRepository.save(aJob);
@@ -75,80 +88,100 @@ public class HomeController {
     }
 
     @GetMapping("/addskill")
-    public String addskill(Model toSend,@ModelAttribute("newPerson") Person newPerson){
-        toSend.addAttribute("aSkill", new Skill());
+    public String addskill(Model model, @ModelAttribute("newPerson") Person newPerson) {
+        model.addAttribute("aSkill", new Skill());
 
         return "addskill";
     }
+
     @PostMapping("/addskill")
-    public String confirmSkillAndAddMore(@Valid @ModelAttribute("aSkill") Skill aSkill, @ModelAttribute("newPerson") Person newPerson, BindingResult result){
-        if(result.hasErrors()) {
+    public String confirmSkill(@Valid @ModelAttribute("aSkill") Skill aSkill, @ModelAttribute("newPerson") Person newPerson, BindingResult result) {
+        if (result.hasErrors()) {
             return "addskill";
         }
         skillRepository.save(aSkill);
         return "confirmskill";
     }
-    @GetMapping("/generateresume")
-    public String generateResume(Model toSend){
 
-        Person person = personRepository.findById(1);
-        System.out.println("name is " + person.getName());
-        toSend.addAttribute("myPerson",person);
+    @GetMapping("/generateresume")
+    public String generateResume(Model model) {
+
+        Person person = personRepository.findAll().iterator().next();
+        //System.out.println("name is " + person.getName());
+        model.addAttribute("myPerson", person);
 
         Iterable<Education> edu = educationRepository.findAll();
-        toSend.addAttribute("myEducation", edu);
+        model.addAttribute("myEducation", edu);
         Iterable<Job> job = jobRepository.findAll();
-        toSend.addAttribute("myWork", job);
+        model.addAttribute("myWork", job);
         Iterable<Skill> skill = skillRepository.findAll();
-        toSend.addAttribute("mySkills",skill);
+        model.addAttribute("mySkills", skill);
         return "generateresume";
     }
-    //For delete and edit
-    @GetMapping("/addjob/update/{id}")
-    public String defaultRequest4 (@PathVariable ("id") long id,Model model){
-        Job job =jobRepository.findOne(id);
-        model.addAttribute("aJob",job);
-        return "addjob";
-    }
-    @GetMapping("/addjob/delete/{id}")
-    public String delete(@PathVariable("id") long id){
-        jobRepository.delete(id);
-        return "redirect:/addskill";
-    }
+
     @GetMapping("/index/update/{id}")
-    public String updatePerson (@PathVariable ("id") long id,Model model){
-        Person person =personRepository.findOne(id);
-        model.addAttribute("newPerson",person);
+    public String updatePerson(@PathVariable("id") long id, Model model) {
+        Person person = personRepository.findOne(id);
+        model.addAttribute("newPerson", person);
         return "index";
     }
-    @GetMapping("/confirmeducation/update/{id}")
-    public String updateeducation (@PathVariable ("id") long id,Model model){
-        Education education =educationRepository.findOne(id);
-        model.addAttribute("newEducation",education);
+
+    @GetMapping("/updateeducation/{id}")
+    public String updateEducation(@PathVariable("id") long id, Model model) {
+        model.addAttribute("anEducation", educationRepository.findOne(id));
         return "addeducation";
     }
-    @GetMapping("/addeducation/delete/{id}")
-    public String delete1(@PathVariable("id") long id){
+
+    @GetMapping("/deleteeducation/{id}")
+    public String deleteEducation(@PathVariable("id") long id) {
         educationRepository.delete(id);
-        return "redirect:/addjob";
+        return "redirect:/generateresume";
     }
-//    @RequestMapping("/update/{id}")
-//    public String update(@PathVariable("id") long id,Model model){
-//        Person person = personRepository.findOne(id);
-//        model.addAttribute("newPerson", person);
-//        return "addskill";
-//    }
 
-//    @GetMapping("/delete/{id}")
-//    public String delete(@PathVariable("id") long id){
-//        personRepository.delete(id);
-//        return "addskill";
-//    }
-//    @GetMapping("/update/{id}")
-//    public String update(@PathVariable("id") long id,Model model){
-//        Person person = personRepository.findOne(id);
-//        model.addAttribute("newPerson", person);
-//        return "addskill";
-//    }
+    @GetMapping("/delete")
+    public String deleteperson(Model model) {
+        jobRepository.deleteAll();
+        skillRepository.deleteAll();
+        educationRepository.deleteAll();
+        personRepository.deleteAll();
+        model.addAttribute("newPerson", new Person());
+        return "index";
+    }
 
+    @GetMapping("/confirmeducation/update/{id}")
+    public String updateeducation(@PathVariable("id") long id, Model model) {
+        Education education = educationRepository.findOne(id);
+        model.addAttribute("newEducation", education);
+        return "addeducation";
+    }
+
+    @GetMapping("/addeducation/delete/{id}")
+    public String delete1(@PathVariable("id") long id) {
+        educationRepository.delete(id);
+        //return "redirect:/addjob";
+        return "confirmeducation";
+    }
+//    @ManyToOne(fetch = FetchType.EAGER)
+// +    @JoinColumn(name="eduofperson_id")
+// +    private Person person;
+// +
+//         +    public Person getPerson() {
+//        +        return person;
+//        +    }
+// +
+//         +    public void setPerson(Person person) {
+//        +        this.person = person;
+//     private ArrayList<Education> education;
+// +    @OneToMany(mappedBy = "", cascade = CascadeType.ALL, fetch= FetchType.EAGER)
+// +    private Set<Education> educations;
+//
+// -    private ArrayList<Skill> skill;
+// +    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+// +    private Set<Skill> skills;
+//
+// -    private ArrayList<Job> experience;
+// +    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+// +    private Set<Job> experiences;
+//}
 }
+

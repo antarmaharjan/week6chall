@@ -40,7 +40,7 @@
         <p th:inline="text">School: [[${anEducation.school}]].</p>
         <p th:inline="text">Degree: [[${anEducation.degree}]].</p>
         <p th:inline="text">Graduated: [[${anEducation.gradyear}]].</p>
-        <!--<a th:href="@{/addeducation/delete/{id}(id=${anEducation.id})}">Delete</a>-->
+        <a th:href="@{/addeducation/delete/{id}(id=${anEducation.id})}">Delete</a>
         <a th:href="@{/addeducation/update/{id}(id=${anEducation.id})}">Update</a><br>
         <a class="btn btn-primary btn-xl" href="/addeducation">Add more education</a><p>OR</p>
         <a class="btn btn-primary btn-xl" href="/addjob">Add work experience!</a>
@@ -50,8 +50,6 @@
 <!--<a class="btn btn-primary btn-xl" href="/addeducation">Add another educational infos</a>-->
 <!--<a class="btn btn-primary btn-xl" href="/addjob">Add work experience!</a>-->
 </section>
-<footer>
-    <p>Resume Building App, Ratna &copy; 2017</p>
-</footer>
+<footer th:align="center" th:replace="fragment :: footerpart"/>
 </body>
 </html>
