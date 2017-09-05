@@ -21,14 +21,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .formLogin().loginPage("/login").permitAll()
                 .and()
                 .httpBasic();
-
-//                .authorizeRequests()
-//                .antMatchers("/", "/css/**", "/js/**").permitAll()
-//                .anyRequest().authenticated()
-//                .and()
-//                .formLogin()
-//                .and()
-//                .httpBasic();
     }
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -36,9 +28,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         auth.inMemoryAuthentication().
                 //withUser("a").password("a").roles("USER");
         withUser("username").password("password").roles("USER");
-        // to add additional accounts, remove the semicolon at
-        // the end of the previous command and add an additional user like below:
-        //           .and()
-        //           .withUser("dave").password("begreat").roles("USER");
+
     }
 }

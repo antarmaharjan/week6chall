@@ -11,22 +11,22 @@
 </head>
 <h1 align="center"> Robo Resume presents:</h1>
 <hr>
-<!--<header th:replace="fragment::headerpart"/>-->
+
 <body>
 <div class="container" align="center">
 <h2> Personal Information</h2>
-<h5 th:inline="text"> Full Name: [[${person.firstName}]] [[${person.lastName}]].</h5>
-<h5 th:inline="text"> Email Address: [[${person.emailAddress}]].</h5>
+<h4 th:inline="text"> Full Name: [[${person.firstName}]] [[${person.lastName}]].</h4>
+<h4 th:inline="text"> Email Address: [[${person.emailAddress}]].</h4>
 <div>
 </div>
     <a th:href="@{/updatePerson/{id}(id=${person.id})}">Update</a>
 </div>
 <h2 align="center"> Educational Information</h2>
 <div th:each="e:${person.educationalAchievements}"align="center">
-    <h3>Education:</h3>
-    <h5 th:text="${e.degreeTitle}"></h5>
-    <h5 th:text="${e.educationalInstitution}"></h5>
-    <h5 th:text="${e.graduateDate}"></h5>
+    <h2>Education:</h2>
+    <h4 th:text="${e.degreeTitle}"></h4>
+    <h4 th:text="${e.educationalInstitution}"></h4>
+    <h4 th:text="${e.graduateDate}"></h4>
     <div>
         <a th:href="@{/updateEducation/{id}(id=${e.id})}">Update</a>
         <a th:href="@{/deleteEducation/{id}(id=${e.id})}">Delete</a>
@@ -37,12 +37,12 @@
 <div class="form-group" align="center">
     <div th:each="w:${person.workExperience}"align="center">
         <h3>Employment:</h3>
-        <h5 th:text="${w.positionTitle}"></h5>
-        <h5 th:text="${w.organisation}"></h5>
-        <h5 th:text="${w.startDate}"></h5>
-        <h5 th:text="${w.endDate}"></h5>
-        <h5 th:text="${w.duty1}"></h5>
-        <h5 th:text="${w.duty2}"></h5>
+        <h4 th:text="${w.positionTitle}"></h4>
+        <h4 th:text="${w.organisation}"></h4>
+        <h4 th:text="${w.startDate}"></h4>
+        <h4 th:text="${w.endDate}"></h4>
+        <h4 th:text="${w.duty1}"></h4>
+        <h4 th:text="${w.duty2}"></h4>
         <div>
             <a th:href="@{/updateEmployment/{id}(id=${w.id})}">Update</a>
             <a th:href="@{/deleteEmployment/{id}(id=${w.id})}">Delete</a>
@@ -54,8 +54,8 @@
 <div class="form-group" align="center">
     <div th:each="s:${person.skillsWithRating}">
 
-        <h5 th:text="${s.skillTitle}"></h5>
-        <h5 th:text="${s.skillRating}"></h5>
+        <h4 th:text="${s.skillTitle}"></h4>
+        <h4 th:text="${s.skillRating}"></h4>
         <div>
             <a th:href="@{/updateSkills/{id}(id=${s.id})}">Update</a>
             <a th:href="@{/deleteSkills/{id}(id=${s.id})}">Delete</a>
@@ -64,7 +64,7 @@
     </div>
 </div>
 
-<div class="row1" style="text-align: center">
+    <div class="row1" style="text-align: center">
     <div class="col-sm-4">
         <a class="btn btn-primary" th:href="@{/enterEducation/{id}(id=${person.id})}" type = "submit" style="width:290px" >Add more Education</a><br><br>
         <a class="btn btn-primary" th:href="@{/enterEmployment/{id}(id=${person.id})}" type = "submit" style="width:290px" >Add More Work Experiences </a><br><br>

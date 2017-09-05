@@ -13,10 +13,10 @@
     <title>Title</title>
 </head>
 <body>
-<header th:replace="fragment :: headerpart"/>
+<!--<header th:replace="fragment :: headerpart"/>-->
 
 
-</header>
+<!--</header>-->
 
 <section id="showcase">
     <div class="container"></div>
@@ -36,8 +36,8 @@
         <a class="btn btn-secondary" th:href="@{/enterEmployment/{id}(id=${personObject.id})}" type = "submit">Enter Employment</a><br><br>
         <a class="btn btn-secondary" th:href="@{/enterSkills/{id}(id=${personObject.id})}" type = "submit">Enter Skill</a><br><br>
         <a class="btn btn-secondary" th:href="@{/displayPersonAllInfo/{id}(id=${personObject.id})}">See Resume for this person</a><br><br>
-        <!--<a class="btn btn-secondary" href="/" role="button">Home Page</a>-->
-        <a class="btn btn-secondary" href="/allPersons">Go to the List of All Users</a><br><br>
+        <a class="btn btn-secondary" href="/" role="button">Home Page</a>
+        <!--<a class="btn btn-secondary" href="/allPersons">Go to the List of All Users</a><br><br>-->
 
     </div>
     <!--<a class="btn btn-primary btn-xl" href="/addeducation">Right,that's me!</a>-->
