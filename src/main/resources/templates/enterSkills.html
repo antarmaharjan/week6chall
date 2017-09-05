@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <a class="btn btn-secondary" href="/" role="button">Home Page</a>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <title>Resume Buildiing App</title>
+    <link rel="stylesheet" href="/css/style.css">
+      <style type="text/css";>
+          a{
+              color: yellow;
+          }
+      </style>
+  </head>
+  <body>
+  <header>
+      <div class="container">
+          <div id="branding">
+              <h1><span class="highlight" th:align="center">Resume Buildiing App</span></h1>
+          </div>
+      </div>
+  </header>
+  <!--<head th:replace="fragment::headerpart">-->
+
+  </head>
+
+<section id="showcase">
+        <div class="container"></div>
+    <h3>Enter Skill and Rating</h3>
+    <hr>
+    <form th:action="@{/enterSkills}"
+          th:object="${newSkills}"
+          method="post">
+        <input type="hidden" th:field="*{person.id}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <ul>
+            Skill: <input required th:type="text" th:field="*{skillTitle}"/> <br />
+            <span th:if="${#fields.hasErrors('skillTitle')}"
+                  th:errors="*{skillTitle}"></span><br />
+            Rating: <input  required th:type="text" th:field="*{skillRating}"/><br />
+            <span th:if="${#fields.hasErrors('skillRating')}"
+                  th:errors="*{skillRating}"></span><br />
+        </ul>
+
+
+        <div class="form-group">
+            <input class="btn btn-primary" type = "submit" value="Submit"/></a><br><br>
+
+            <a class="btn btn-info" href="/" role="button"> Home Page</a>
+        </div>
+
+    </form>
+</section>
+    <footer th:align="center" th:replace="fragment :: footerpart"/>
+
+  </body>
+</html>

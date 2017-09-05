@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+<h2>Here is the List of All Persons</h2>
+<div class="container" style="text-align: center">
+    <!--<table border="1" cellpadding="5">-->
+    <table>
+        <tr>
+            <td><b>ID</p></b></td>
+            <td><b>First Name</p></b></td>
+            <td><b>Lats Name</p></b></td>
+
+            <td><b>Delete Resume</p></b></td>
+            <td><b>See / Update Resume</p></b></td>
+        </tr>
+
+        <!--iterate through all the persons-->
+        <th:block th:each="all:${allpersons}">
+            <tr>
+                <td><a th:text="${all.id}"></a></td>
+                <td><a th:text="${all.firstName}"></a></td>
+                <td><a th:text="${all.lastName}"></a></td>
+                <td>
+                    <a th:href="@{/deletePerson/{id}(id=${all.id})}">Delete</a>
+                </td>
+                <td>
+                    <a th:href="@{/displayPersonAllInfo/{id}(id=${all.id})}">See Resume for this Person</a>
+                </td>
+            </tr>
+        </th:block>
+    </table>
+    <br><br>
+    <a class="btn btn-primary" href="/" role="button" style="width:270px">Link to the Home Page</a><br><br>
+    <a class="btn btn-info" href="/enterPerson" style="width:270px">Create New Resume</a><br><br>
+
+</body>
+</html>

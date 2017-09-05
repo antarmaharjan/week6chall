@@ -1,60 +1,87 @@
 package me.ratna.wk4.models;
 
-import org.hibernate.validator.constraints.Range;
-import org.springframework.format.annotation.DateTimeFormat;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Education {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Id
-    @NotNull
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+
+    @NotEmpty
+    @Size(min=1, max=50)
+    private String degreeTitle;
+
+    @NotEmpty
+    @Size(min=1, max=50)
+    private String educationalInstitution;
+
     @NotNull
-    private String school;
-    @NotNull
-    private String degree;
-    @NotNull
-    @Range(min = 1950,max = 2099)
-    //@DateTimeFormat(pattern = "yyyy")
-    private long gradyear;
+    @Min(1930)
+    @Max(2023)
+    private Integer graduateDate;
+
+
+
+    // Add Relationship - Person and Employment
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="person_id")
+    @JoinColumn(name = "person_id")
     private Person person;
 
-    public long getGradyear() {
-        return gradyear;
-    }
-    public void setGradyear(long gradyear) {
-        this.gradyear = gradyear;
-    }
+
+
+
+    // ==== Setters and Getters ====
+
     public long getId() {
         return id;
     }
 
-    public String getSchool() {
-        return school;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setSchool(String school) {
-        this.school = school;
+    public String getDegreeTitle() {
+        return degreeTitle;
     }
 
-    public String getDegree() {
-        return degree;
+    public void setDegreeTitle(String degreeTitle) {
+        this.degreeTitle = degreeTitle;
     }
 
-    public void setDegree(String degree) {
+    public String getEducationalInstitution() {
+        return educationalInstitution;
+    }
 
-            this.degree = degree;
+    public void setEducationalInstitution(String educationalInstitution) {
+        this.educationalInstitution = educationalInstitution;
     }
-    public void setPerson(Person person) {
-        this.person = person;
+
+    public Integer getGraduateDate() {
+        return graduateDate;
     }
+
+    public void setGraduateDate(Integer graduateDate) {
+        this.graduateDate = graduateDate;
+    }
+
+
+
+    // Setter and Getter for Relationship - Person and Education
     public Person getPerson() {
         return person;
     }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
 
 }

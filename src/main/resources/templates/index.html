@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:fragment="headingpart">
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width">
-    <title>Resume Building App</title>
-    <link rel="stylesheet" href="/css/style.css"/>
+<head th:replace="fragment::headingpart">
+    <!--<meta charset="UTF-8"/>-->
+    <!--<meta name="viewport" content="width=device-width">-->
+    <!--<title>Resume Building App</title>-->
+    <!--<link rel="stylesheet" href="/css/style.css"/>-->
 </head>
 <body>
 <header th:fragment="headerpart">
@@ -12,12 +12,6 @@
         <div id="branding">
             <h1><span class="highlight">Resume Building App</span></h1>
         </div>
-        <nav>
-            <ul>
-                <li class="current"><a href="index.html">Home</a></li>
-                <li><a href="/generateresume">Skip to resume</a></li>
-            </ul>
-        </nav>
     </div>
 </header>
 
@@ -26,27 +20,14 @@
         <h2 id="homeHeading">Welcome to the Resume Builder App</h2>
     </div>
 <hr>
-<h3>Please enter your name and email below:</h3>
-
-<!--enter things here-->
-<form action="#"
-      th:action="@{/}"
-      th:object="${newPerson}"
-      method="post">
-    <ul>
-        Name: <Input required type="text" th:field="*{name}"/>
-        <span th:if="${#fields.hasErrors('name')}"
-              th:errors="*{name}"></span><br />
-        <br>
-        Email: <Input required type="email" th:field="*{email}"/>
-        <span th:if="${#fields.hasErrors('email')}"
-              th:errors="*{email}"></span><br />
-    </ul>
-    <p><input type="submit" value="Click here to start"/></p>
-     <!--<p><Input type="reset" value="spelled wrong"/></p>-->
-
-</form>
+    <div class="text-center mt-10">
+        <!--<button class="btn btn-primary btn-lg"><a href="/allPersons" style="text-decoration: none; color:white;">see the list of all users</a></button><br />-->
+        <br />
+        <button class="btn btn-success btn-lg"><a href="/enterPerson" style="text-decoration: none; color:white;">start your resume</a></button>
+    </div>
 </section>
+<!--enter things here-->
+
 <footer align="center" th:replace="fragment :: footerpart"/>
 
 </body>

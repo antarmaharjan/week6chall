@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!--<head th:replace="fragment::headingpart">-->
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+
+
+</head>
+<body>
+<section id="showcase">
+    <div class="container"></div>
+    <h3>Enter Employment History</h3>
+    <hr>
+    <!--<h2> Work Experiences Form</h2>-->
+    <form th:action="@{/enterEmployment}"
+          th:object="${newEmployment}"
+          method="post">
+
+
+        <input type="hidden" th:field="*{person.id}"/>
+        <input type="hidden" th:field="*{id}"/>
+        <ul>
+            Position Title: <input required th:type="text" th:field="*{positionTitle}"/> <br />
+            <span th:if="${#fields.hasErrors('positionTitle')}"
+                  th:errors="*{positionTitle}"></span><br />
+            Organisation: <input  required th:type="text" th:field="*{organisation}"/><br />
+            <span th:if="${#fields.hasErrors('organisation')}"
+                  th:errors="*{organisation}"></span><br />
+            Start Date(YYYY/MM/dd) <input  required th:type="date" th:field="*{startDate}"/><br />
+            <span th:if="${#fields.hasErrors('startDate')}"
+                  th:errors="*{startDate}"></span><br />
+            End Date(YYYY/MM/dd) <input  required th:type="date" th:field="*{endDate}"/><br />
+            <span th:if="${#fields.hasErrors('endDate')}"
+                  th:errors="*{endDate}"></span><br />
+           Enter Duty1 <input  required th:type="text" th:field="*{duty1}"/><br />
+            <span th:if="${#fields.hasErrors('duty1')}"
+                  th:errors="*{duty1}"></span><br />
+            Enter Duty2 <input  required th:type="text" th:field="*{duty2}"/><br />
+            <span th:if="${#fields.hasErrors('duty2')}"
+                  th:errors="*{duty2}"></span><br />
+        </ul>
+        <!-------------------------------------------------------->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-5 control-label">Position Title:</label>-->
+            <!--<div class="col-sm-13">-->
+                <!--<input type="text" th:field="*{positionTitle}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('positionTitle')}" th:errors="*{positionTitle}" style="color:#b81624"/></p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-1 control-label">Organisation:</label>-->
+            <!--<div class="col-sm-2">-->
+                <!--<input type="text" th:field="*{organisation}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('organisation')}" th:errors="*{organisation}" style="color:#b81624"/>  </p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-1 control-label">Start date (yyyy/MM/dd):</label>-->
+            <!--<div class="col-sm-2">-->
+                <!--<input type="text" th:field="*{startDate}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('startDate')}" th:errors="*{startDate}" style="color:#b81624"/> </p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-1 control-label">End date (yyyy/MM/dd):</label>-->
+            <!--<div class="col-sm-2">-->
+                <!--<input type="text" th:field="*{endDate}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('endDate')}" th:errors="*{endDate}" style="color:#b81624"/> </p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-1 control-label">Enter duty1:</label>-->
+            <!--<div class="col-sm-2">-->
+                <!--<input type="text" th:field="*{duty1}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('duty1')}" th:errors="*{duty1}" style="color:#b81624"/> </p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label class="col-md-1 control-label">Enter duty2:</label>-->
+            <!--<div class="col-sm-2">-->
+                <!--<input type="text" th:field="*{duty2}" />-->
+                <!--<p><span th:if="${#fields.hasErrors('duty2')}" th:errors="*{duty2}" style="color:#b81624"/> </p>-->
+            <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <input class="btn btn-primary" th:bgcolor="black" type = "submit" value="Submit"/></a><br><br>
+            <!--<a class="btn btn-secondary" th:href="@{/displayPersonAllInfo/{id}(id=${newPerson.id})}">See Resume for this person</a><br><br>-->
+            <!--<a class="btn btn-secondary" href="/" role="button"> Home Page</a>-->
+        </div>
+
+    </form>
+</section>
+
+    <footer th:align="center" th:replace="fragment :: footerpart"/>
+
+
+
+</body>
+</html>

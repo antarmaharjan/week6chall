@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" />
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous" />
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <title>Resume Building App!</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<header>
+    <div class="container">
+        <div id="branding">
+            <h1><span class="highlight" th:align="center">Resume Buildiing App</span></h1>
+        </div>
+    </div>
+</header>
+<section id="showcase">
+    <div class="container"></div>
+<div class="container" align="center">
+    <h2>Enter user name and password to proceed</h2>
+
+    <div th:if="${param.error}">
+        Invalid username and password.
+    </div>
+    <div th:if="${param.logout}">
+        You have been logged out.
+    </div>
+
+    <form th:action="@{/login}"
+          th:object="${newPerson}" method="post">
+
+        <div class="form-group">
+            <h3>User Name:<input type="text" class="form-control" placeholder="Enter user name" name="username"></h3>
+        </div>
+        <div class="form-group">
+            <h3>Password:<input type="password" class="form-control" placeholder="Enter password" name="password"></h3>
+        </div>
+        <div class="checkbox">
+            <label><input type="checkbox" name="remember"> Remember me</label>
+        </div>
+        <button type="submit" class="btn btn-primary btn-lg" value="Sign In">Sign in</button>
+
+    </form></div>
+</div>
+<br>
+
+
+<br>
+</section>
+<footer th:align="center">
+    <p>Resume Buildiing App, Ratna &copy; 2017</p>
+</footer>
+
+</body>
+</html>
+
+
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">-->
+<!--<head>-->
+    <!--<meta charset="UTF-8"/>-->
+    <!--<title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<div th:if="${param.error}">-->
+    <!--Invalid username and password.-->
+<!--</div>-->
+<!--<div th:if="${param.logout}">-->
+    <!--You have been logged out.-->
+<!--</div>-->
+
+<!--<form th:action="@{/login}" method="post">-->
+
+<!--</form>-->
+<!--<label class="col-md-5 control-label">Username:</label>-->
+<!--<input type="text" class="form-control" placeholder="Enter user name" name="username" required>-->
+<!--</div>-->
+<!--<div class="form-group">-->
+    <!--<label class="col-md-5 control-label">Password:</label>-->
+    <!--<input type="password" class="form-control" placeholder="Enter password" name="password" required>-->
+<!--</div>-->
+
+<!--<p class="alert alert-danger" th:if="${param.error}">Invalid username or password</p>-->
+<!--&lt;!&ndash;<p class="alert alert-success" th:if="${param.logout}">You have been logged out</p>&ndash;&gt;-->
+
+
+<!--<input class="btn btn-secondary" type = "submit" value="Sign In"/>Sign in</a>-->
+
+<!--</body>-->
+<!--</html>-->

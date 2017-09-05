@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <style type="text/css";>
+        a{
+            color: yellow;
+        }
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<header th:replace="fragment :: headerpart"/>
+
+
+</header>
+
+<section id="showcase">
+    <div class="container"></div>
+    <!--<h3>Make sure this is you [[${newPerson.name}]]:</h3>-->
+    <!--<h1>Personal Details:</h1>-->
+    <h2> Your Personal Information:</h2>
+    <hr>
+
+    <div class="form-group">
+        <h3 th:text="'Name: ' + ${newPerson.firstName} + ' ' + ${newPerson.lastName}"></h3>
+        <h3 th:text="'Email Address: ' + ${newPerson.emailAddress}"></h3>
+    </div>
+
+    <h4 th:bgcolor="green"> Choose what do you want to do now?</h4>
+    <div class="form-group">
+        <a class="btn btn-secondary" th:href="@{/enterEducation/{id}(id=${personObject.id})}"  type = "submit">Enter Education</a><br><br>
+        <a class="btn btn-secondary" th:href="@{/enterEmployment/{id}(id=${personObject.id})}" type = "submit">Enter Employment</a><br><br>
+        <a class="btn btn-secondary" th:href="@{/enterSkills/{id}(id=${personObject.id})}" type = "submit">Enter Skill</a><br><br>
+        <a class="btn btn-secondary" th:href="@{/displayPersonAllInfo/{id}(id=${personObject.id})}">See Resume for this person</a><br><br>
+        <!--<a class="btn btn-secondary" href="/" role="button">Home Page</a>-->
+        <a class="btn btn-secondary" href="/allPersons">Go to the List of All Users</a><br><br>
+
+    </div>
+    <!--<a class="btn btn-primary btn-xl" href="/addeducation">Right,that's me!</a>-->
+</section>
+<footer th:align="center" th:replace="fragment :: footerpart"/>
+
+
+
+</body>
+</html>

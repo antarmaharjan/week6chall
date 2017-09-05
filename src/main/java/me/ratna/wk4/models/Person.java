@@ -1,95 +1,142 @@
-package me.ratna.wk4.models;
+package me.ratna.wk4.models;;
+
 
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
 public class Person {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+
     @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private long id;
+
     @NotNull
-    private String name;
-    @NotNull
+    @Size(min=1, max=50, message = "Must enter your first name.")
+    private String firstName;
+
+    @NotEmpty
+    @Size(min=1, max=50, message = "Must enter your last name.")
+    private String lastName;
+
+    @NotEmpty
+    @Size(min=1, max=50, message = "Must enter your email address.")
     @Email
-    private String email;
-    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Job> morejob;
+    private String emailAddress;
 
-    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Education> moreEducation;
-    @OneToMany(mappedBy = "person",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Skill> moreSkill;
+    //=== Add Relationship - Person and Education ===
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Education> educationalAchievements;
 
-    private ArrayList<Job> jobs;
-    private ArrayList<Education> educations;
-    private ArrayList<Skill> skills;
+    //=== Add Relationship - Person and Employment ===
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Employment> workExperience;
+
+    //=== Add Relationship - Person and Skills ===
+    @OneToMany(mappedBy = "person", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Skills> skillsWithRating;
+
+    // ====== Constructor (we can also do it in the controller)
+    public Person(){
+        setEducationalAchievements(new HashSet<>());
+        setWorkExperience(new HashSet<>());
+        setSkillsWithRating(new HashSet<>());
+    }
+    // ========== Custom methods: ==========
+
+    // 1.1) ====== Delete Skill from Set
+    public void removeSkill(Skills s) {
+        skillsWithRating.remove(s);
+    }
+
+    // 1.2) ====== Add a Skill: =========
+    public void addSkill(Skills s){
+        s.setPerson(this);  //set person with this object (set Person)
+        skillsWithRating.add(s);
+    } // ==============================
+    // 2.1) ====== Delete Education from Set
+    public void removeEducation(Education e) {
+        educationalAchievements.remove(e);
+    }
+
+    // 2.2) ====== Add a Education: =========
+    public void addEducation(Education e){
+        e.setPerson(this);  //set person with this object (set Person)
+        educationalAchievements.add(e);
+    } // ==============================
+
+    // 2.1) ====== Delete Employment from Set
+    public void removeEmployment(Employment w) {
+        workExperience.remove(w);
+    }
+
+    // 2.2) ====== Add a Skill: =========
+    public void addEmployment(Employment w){
+        w.setPerson(this);  //set person with this object (set Person)
+        workExperience.add(w);
+    } // ==============================
+    //==== Setters and Getters ====
     public long getId() {
         return id;
     }
-    public void  setId(long id) {this.id = id;}
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
-    }
-    public String getEmail() {
-        return email;
+
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public ArrayList<Job> getJobs() {
-        return jobs;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public void setJobs(ArrayList<Job> jobs) {
-        this.jobs = jobs;
+    public String getLastName() {
+        return lastName;
     }
 
-    public ArrayList<Education> getEducations() {
-        return educations;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setEducations(ArrayList<Education> educations) {
-        this.educations = educations;
+    public String getEmailAddress() {
+        return emailAddress;
     }
 
-    public ArrayList<Skill> getSkills() {
-        return skills;
+    public void setEmailAddress(String emailAddress) {
+        this.emailAddress = emailAddress;
     }
 
-    public void setSkills(ArrayList<Skill> skills) {
-        this.skills = skills;
+    // ====== Setter and Getter for Relationship - Person and Education
+    public Set<Education> getEducationalAchievements() {
+        return educationalAchievements;
     }
-    public Set<Job> getMorejob() {
-        return morejob;
+    public void setEducationalAchievements(Set<Education> educationalAchievements) {
+        this.educationalAchievements = educationalAchievements;
     }
-
-    public void setMorejob(Set<Job> morejob) {
-        this.morejob = morejob;
+    // ====== Setter and Getter for Relationship - Person and Employment
+    public Set<Employment> getWorkExperience() {
+        return workExperience;
     }
-
-    public Set<Education> getMoreEducation() {
-        return moreEducation;
-    }
-
-    public void setMoreEducation(Set<Education> moreEducation) {
-        this.moreEducation = moreEducation;
+    public void setWorkExperience(Set<Employment> workExperience) {
+        this.workExperience = workExperience;
     }
 
-    public Set<Skill> getMoreSkill() {
-        return moreSkill;
+    // ====== Setter and Getter for Relationship - Person and Skills
+    public Set<Skills> getSkillsWithRating() {
+        return skillsWithRating;
+    }
+    public void setSkillsWithRating(Set<Skills> skillsWithRating) {
+        this.skillsWithRating = skillsWithRating;
     }
 
-    public void setMoreSkill(Set<Skill> moreSkill) {
-        this.moreSkill = moreSkill;
-    }
+
 }

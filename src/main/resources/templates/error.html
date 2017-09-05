@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+</head>
+<body>
+
+
+<section id="showcase">
+    <div class="container"></div>
+
+
+    <h2> Warning</h2>
+    <div class="table-responsive">
+        <h3> You are seeing this page because some parts of a resume are mandatory</h3>
+        <div class="form-group">
+
+            <p th:text="${messageErrorEducation}" style="color:#b81624" font-size="30"/></p>
+
+            <!--<p></p>-->
+
+            <p th:text="${messageErrorSkills}" style="color:#b81624" font-size="30"/></p>
+
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

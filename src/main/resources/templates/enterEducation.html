@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <a class="btn btn-secondary" href="/" role="button">Home Page</a>
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width">
+    <title>Resume Building App</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+    <style type="text/css";>
+        a{
+            color: yellow;
+        }
+    </style>
+</head>
+<body>
+<section id="showcase">
+    <div class="container"></div>
+<!--<h2> Welcome to Resume building App</h2>-->
+<h2> Enter your Educational History</h2>
+
+<form th:action="@{/enterEducation}"
+      th:object="${newEducation}"
+      method="post">
+    <input type="hidden" th:field="*{person.id}"/>
+    <input type="hidden" th:field="*{id}"/>
+
+    <ul>
+        Degree: <input required th:type="text" th:field="*{degreeTitle}"/> <br />
+        <span th:if="${#fields.hasErrors('degreeTitle')}"
+              th:errors="*{degreeTitle}"></span><br />
+        Educational Institution: <input  required th:type="text" th:field="*{educationalInstitution}"/><br />
+        <span th:if="${#fields.hasErrors('educationalInstitution')}"
+              th:errors="*{educationalInstitution}"></span><br />
+        Graduate year(YYYY) <input  required th:type="text" th:field="*{graduateDate}"/><br />
+        <span th:if="${#fields.hasErrors('graduateDate')}"
+              th:errors="*{graduateDate}"></span><br />
+    </ul>
+
+    <div class="form-group">
+        <input type="hidden" name="update"  th:value="${updatevalue}"/>
+        <input class="btn btn-secondary" type = "submit" value="Submit"/></a>
+        <br>
+        <p th:text="${message}" style="color:#b81624"/></p>
+    </div>
+
+    <div class="form-group">
+        <!--<a class="btn btn-secondary" href="/displayPersonAllInfo" type = "submit">View Personal information</a><br/>-->
+    </div>
+
+</form>
+
+
+<br>
+<footer th:align="center" th:replace="fragment :: footerpart"/>
+
+</body>
+</html>

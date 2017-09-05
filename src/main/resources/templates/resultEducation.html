@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragment::headingpart">
+    <!--<meta charset="utf-8">-->
+    <!--<meta name="viewport" content="width=device-width">-->
+
+    <!--<title>Resume Buildiing App</title>-->
+    <!--<link rel="stylesheet" href="/css/style.css">-->
+    <style type="text/css";>
+        a{
+            color: black;background: #9cff57
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="container" align="center">
+        <div id="branding">
+            <h2><span class="highlight" th:align="center">Resume Building App</span></h2>
+        </div>
+
+    </div>
+</header>
+<section id="showcase">
+    <div class="container"></div>
+<h2> Educational History</h2>
+<h4>Your Educational Informations:</h4>
+<div class="panel panel-default" >
+    <div class="panel-heading">
+        <!--<h3 class="panel-title">Confirmation:</h3>-->
+    <!--</div>-->
+    <div class="form-group" th:height="200px" th:width="50px">
+        <h3 th:text="'Degree Title: ' + ${newEducation.degreeTitle}"></h3>
+        <h3 th:text="'Educational Institution: ' + ${newEducation.educationalInstitution}"></h3>
+        <h3 th:text="'Graduate Year: ' + ${newEducation.graduateDate}"></h3>
+
+
+    <br/><br/>
+    <!--<div class="form-group">-->
+        <a class="btn btn-primary" th:href="@{/enterEducation/{id}(id=${personObject.id})}"  type = "submit">Add Another Education</a><br><br>
+        <a class="btn btn-primary" th:href="@{/enterEmployment/{id}(id=${personObject.id})}" type = "submit">Enter Employment</a><br><br>
+        <a class="btn btn-primary" th:href="@{/enterSkills/{id}(id=${personObject.id})}" type = "submit">Enter Skill</a><br><br>
+        <a class="btn btn-primary" th:href="@{/displayPersonAllInfo/{id}(id=${personObject.id})}">See Resume for this person</a><br><br>
+        <a class="btn btn-primary" href="/" role="button">Home Page</a><br><br>
+        <!--<a class="btn btn-primary" href="/allPersons">Go to the List of All Users</a><br><br>-->
+    </div>
+</div>
+</div>
+
+</section>
+<footer th:align="center" th:replace="fragment :: footerpart"/>
+</body>
+</html>
